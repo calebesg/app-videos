@@ -25,7 +25,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div className="ui container">
+      <div id="container" className="ui container fluid">
         <SearchBar onFormSubmit={this.requestTerm.bind(this)} />
 
         <div className="ui grid">
