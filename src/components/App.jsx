@@ -4,11 +4,19 @@ import { SearchBar } from "./SearchBar";
 import { VideoList } from "./VideoList";
 
 export class App extends React.Component {
-  state = { videos: [] };
+  state = {
+    videos: [],
+    selectedVideo: null,
+  };
 
   async requestTerm(term) {
     const response = await youtube.get("/search", { params: { q: term } });
     this.setState({ videos: response.data.items });
+  }
+
+  onVideoSelected(video) {
+    this.setState({ selectedVideo: video });
+    console.log(video);
   }
 
   render() {
@@ -16,11 +24,10 @@ export class App extends React.Component {
       <div className="ui container">
         <SearchBar onFormSubmit={this.requestTerm.bind(this)} />
 
-        {this.state.videos.length > 0 ? (
-          <VideoList videos={this.state.videos} />
-        ) : (
-          ""
-        )}
+        <VideoList
+          onVideoSelected={this.onVideoSelected.bind(this)}
+          videos={this.state.videos}
+        />
       </div>
     );
   }
