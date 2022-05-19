@@ -1,0 +1,18 @@
+.video-item {
+  display: flex !important;
+  gap: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.video-item:hover {
+  opacity: 0.8;
+}
+
+.video-item img {
+  max-width: 180px !important;
+}
+
+.video-item h2 {
+  font-size: 1.125rem !important;
+}
