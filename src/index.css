@@ -1,6 +1,13 @@
+body {
+  font-family: "Roboto", "sans-serif" !important;
+  background-color: #181818;
+}
+
 #container {
-  max-width: 1200px !important;
+  max-width: 1920px !important;
   width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .video-item {
@@ -11,7 +18,7 @@
 }
 
 .video-item:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .video-item img {
@@ -20,5 +27,27 @@
 }
 
 .video-item h2 {
-  font-size: 1.125rem !important;
+  line-height: 1.5rem;
+  color: white !important;
+  font-size: 14px !important;
+}
+
+.video-item .description {
+  margin-top: 10px;
+  color: #c7c7c7 !important;
+  font-size: 14px !important;
+}
+
+.c-video__description {
+  margin-top: 2rem;
+}
+
+.c-video__description .title {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.c-video__description .description {
+  color: #c7c7c7;
 }
