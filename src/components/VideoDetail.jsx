@@ -12,9 +12,9 @@ export function VideoDetail({ video }) {
         ></iframe>
       </div>
 
-      <div className="ui segment">
-        <h4 className="ui header">{video.snippet.title}</h4>
-        <p>{video.snippet.description}</p>
+      <div className="c-video__description">
+        <h4 className="title">{video.snippet.title}</h4>
+        <p className="description">{video.snippet.description}</p>
       </div>
     </div>
   );

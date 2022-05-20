@@ -1,6 +1,14 @@
 export function VideoItem({ video, onVideoSelected }) {
   return (
-    <div onClick={() => onVideoSelected(video)} className="video-item item">
+    <div
+      style={{
+        borderBottom: "1px solid #303030",
+        marginBottom: "4px",
+        padding: "16px 0",
+      }}
+      onClick={() => onVideoSelected(video)}
+      className="video-item item"
+    >
       <img
         className="ui image"
         src={video.snippet.thumbnails.medium.url}

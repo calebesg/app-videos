@@ -9,5 +9,5 @@ export function VideoList({ videos, onVideoSelected }) {
     />
   ));
 
-  return <div className="ui relaxed divided list">{renderItems}</div>;
+  return <div className="ui relaxed list">{renderItems}</div>;
 }

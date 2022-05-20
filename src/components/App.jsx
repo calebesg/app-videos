@@ -25,10 +25,10 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div id="container" className="ui container fluid">
+      <div className="ui container fluid">
         <SearchBar onFormSubmit={this.requestTerm.bind(this)} />
 
-        <div className="ui grid">
+        <div id="container" className="ui grid">
           <div className="ui row">
             {this.state.selectedVideo && (
               <div className="eleven wide column">
