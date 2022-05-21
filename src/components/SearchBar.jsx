@@ -21,7 +21,7 @@ export class SearchBar extends React.Component {
 
   render() {
     return (
-      <nav style={{ backgroundColor: "#202020" }}>
+      <nav style={{ backgroundColor: "#202020", width: "100%" }}>
         <div className="nav-wrapper">
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="input-field">

@@ -1,22 +1,16 @@
 export function VideoItem({ video, onVideoSelected }) {
   return (
-    <div
-      style={{
-        borderBottom: "1px solid #303030",
-        marginBottom: "4px",
-        padding: "16px 0",
-      }}
-      onClick={() => onVideoSelected(video)}
-      className="video-item item"
-    >
+    <div onClick={() => onVideoSelected(video)} className="c-videos__item">
       <img
-        className="ui image"
+        className="c-videos__image"
         src={video.snippet.thumbnails.medium.url}
         alt={video.snippet.title}
       />
-      <div className="content">
-        <h2 className="header">{video.snippet.title}</h2>
-        <span className="description">{video.snippet.channelTitle}</span>
+      <div className="c-videos__content">
+        <h2 className="c-videos__title">{video.snippet.title}</h2>
+        <span className="c-videos__description">
+          {video.snippet.channelTitle}
+        </span>
       </div>
     </div>
   );

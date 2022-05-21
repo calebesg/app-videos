@@ -24,31 +24,23 @@ export class App extends React.Component {
   }
 
   render() {
+    const { selectedVideo, videos } = this.state;
+
     return (
-      <div className="ui container fluid">
-        <SearchBar onFormSubmit={this.requestTerm.bind(this)} />
+      <>
+        <header>
+          <SearchBar onFormSubmit={this.requestTerm.bind(this)} />
+        </header>
 
-        <div id="container" className="ui grid">
-          <div className="ui row">
-            {this.state.selectedVideo && (
-              <div className="eleven wide column">
-                <VideoDetail video={this.state.selectedVideo} />
-              </div>
-            )}
+        <main>
+          {selectedVideo && <VideoDetail video={selectedVideo} />}
 
-            <div
-              className={
-                this.state.selectedVideo ? "five wide column" : "wide column"
-              }
-            >
-              <VideoList
-                onVideoSelected={this.onVideoSelected.bind(this)}
-                videos={this.state.videos}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+          <VideoList
+            onVideoSelected={this.onVideoSelected.bind(this)}
+            videos={videos}
+          />
+        </main>
+      </>
     );
   }
 }
