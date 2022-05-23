@@ -2,11 +2,13 @@ export function VideoDetail({ video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (
     <div className="c-player">
-      <div className="c-player__video">
+      <div className="aspect-w-16 aspect-h-9 w-full h-auto">
         <iframe
+          className="aspect-w-16 aspect-h-9"
           src={url}
-          frameborder="0"
+          frameBorder="0"
           title="youtube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
       </div>

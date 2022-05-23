@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg-primary: #181818;
   --text-primary: white;
@@ -54,10 +58,10 @@ main {
   font-size: 0.75rem;
 }
 
-.c-player__video iframe {
+/* .c-player__video iframe {
   width: 860px;
   height: 485px;
-}
+} */
 
 .c-player__description {
   margin-top: 1.5rem;
