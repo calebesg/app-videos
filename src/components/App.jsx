@@ -12,6 +12,9 @@ export class App extends React.Component {
 
   async requestTerm(term) {
     const response = await youtube.get("/search", { params: { q: term } });
+
+    console.log(response);
+
     this.setState({
       videos: response.data.items,
       selectedVideo: null,

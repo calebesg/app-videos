@@ -1,19 +1,22 @@
 export function VideoDetail({ video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
+
   return (
-    <div className="c-player">
-      <div className="c-player__video">
+    <div className="">
+      <div className="">
         <iframe
+          className=""
           src={url}
-          frameborder="0"
-          title="youtube video player"
+          frameBorder="0"
+          title="youtube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
       </div>
 
-      <div className="c-player__description">
-        <h4 className="title">{video.snippet.title}</h4>
-        <p className="description">{video.snippet.description}</p>
+      <div className="">
+        <h4 className="">{video.snippet.title}</h4>
+        <p className="">{video.snippet.description}</p>
       </div>
     </div>
   );
