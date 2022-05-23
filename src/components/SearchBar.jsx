@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: "" };
+    this.state = { term: '' };
 
     this.searchRef = React.createRef();
   }
@@ -12,34 +12,38 @@ export class SearchBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.onFormSubmit(this.state.term);
-    this.setState({ term: "" });
-
-    console.log(this.searchRef.current);
 
     this.searchRef.current.blur();
   }
 
   render() {
     return (
-      <nav style={{ backgroundColor: "#202020", width: "100%" }}>
-        <div className="nav-wrapper">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <div className="input-field">
-              <input
-                ref={this.searchRef}
-                value={this.state.term}
-                onChange={(e) => this.setState({ term: e.target.value })}
-                id="search"
-                type="search"
-                required
-              />
-              <label className="label-icon" htmlFor="search">
-                <i className="material-icons">search</i>
-              </label>
-              <i className="material-icons">close</i>
-            </div>
-          </form>
-        </div>
+      <nav className="w-full py-3 fixed bg-gray-700 flex justify-center items-center">
+        <form
+          className="border bg-gray-500 border-gray-500 flex items-center w-full max-w-2xl h-12"
+          onSubmit={this.handleSubmit.bind(this)}
+        >
+          <input
+            className="bg-gray-900 border-none h-full outline-1 outline-blue-600 text-white flex-1 px-4 placeholder:text-gray-100"
+            ref={this.searchRef}
+            value={this.state.term}
+            onChange={e => this.setState({ term: e.target.value })}
+            type="search"
+            aria-label="Search a video"
+            placeholder="Search"
+            required
+          />
+          <button
+            className="h-full w-16 flex items-center justify-center border-none bg-transparent text-white"
+            type="submit"
+            aria-label="search"
+          >
+            <ion-icon
+              name="search-outline"
+              style={{ fontSize: '24px' }}
+            ></ion-icon>
+          </button>
+        </form>
       </nav>
     );
   }
