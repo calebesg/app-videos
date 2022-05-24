@@ -12,9 +12,9 @@ export function SearchBar({ onFormSubmit }) {
   };
 
   return (
-    <nav className="w-full py-3 fixed bg-gray-700 flex justify-center items-center">
+    <nav className="w-full py-2 px-4 fixed bg-gray-700 flex justify-center items-center">
       <form
-        className="border bg-gray-500 border-gray-500 flex items-center w-full max-w-2xl h-12"
+        className="border bg-gray-500 border-gray-500 flex items-center w-full max-w-xl h-10"
         onSubmit={handleSubmit}
       >
         <input

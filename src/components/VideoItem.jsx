@@ -1,14 +1,25 @@
 export function VideoItem({ video, onVideoSelected }) {
+  const formatTitle = function (text) {
+    if (text.length <= 60) return text;
+
+    return `${text.slice(0, 60)}...`;
+  };
+
   return (
-    <div onClick={() => onVideoSelected(video)} className="c-videos__item">
+    <div
+      className="flex items-start gap-2 cursor-pointer hover:opacity-70 transition-all"
+      onClick={() => onVideoSelected(video)}
+    >
       <img
-        className="c-videos__image"
+        className="w-40"
         src={video.snippet.thumbnails.medium.url}
         alt={video.snippet.title}
       />
-      <div className="c-videos__content">
-        <h2 className="c-videos__title">{video.snippet.title}</h2>
-        <span className="c-videos__description">
+      <div>
+        <h2 className="text-white text-sm">
+          {formatTitle(video.snippet.title)}
+        </h2>
+        <span className="text-gray-100 text-xs">
           {video.snippet.channelTitle}
         </span>
       </div>
