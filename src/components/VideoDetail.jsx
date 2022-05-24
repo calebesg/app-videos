@@ -1,6 +1,15 @@
 export function VideoDetail({ video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
 
+  console.log(video);
+
+  const formatDate = function (str) {
+    const date = new Date(str);
+    console.log(date);
+
+    return str;
+  };
+
   return (
     <>
       <div className="aspect-w-16 aspect-h-9">
@@ -13,9 +22,14 @@ export function VideoDetail({ video }) {
         ></iframe>
       </div>
 
-      <div className="">
-        <h4 className="">{video.snippet.title}</h4>
-        <p className="">{video.snippet.description}</p>
+      <div className="mt-3 pb-2">
+        <h4 className="text-white font-bold text-xl">{video.snippet.title}</h4>
+        <p className="text-white font-bold text-sm mt-2 w-3/4">
+          {formatDate(video.snippet.publishedAt)}
+          <span className="text-gray-100 font-normal">
+            {video.snippet.description}
+          </span>
+        </p>
       </div>
     </>
   );
