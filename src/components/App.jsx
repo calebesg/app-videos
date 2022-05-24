@@ -22,7 +22,7 @@ export function App() {
         <SearchBar onFormSubmit={searchVideos} />
       </header>
 
-      <main>
+      <main className="pt-24 px-4">
         {selectedVideo && <VideoDetail video={selectedVideo} />}
 
         <VideoList onVideoSelected={setSelectedVideo} videos={videos} />

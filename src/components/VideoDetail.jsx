@@ -2,10 +2,9 @@ export function VideoDetail({ video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
 
   return (
-    <div className="">
-      <div className="">
+    <>
+      <div className="aspect-w-16 aspect-h-9">
         <iframe
-          className=""
           src={url}
           frameBorder="0"
           title="youtube video"
@@ -18,6 +17,6 @@ export function VideoDetail({ video }) {
         <h4 className="">{video.snippet.title}</h4>
         <p className="">{video.snippet.description}</p>
       </div>
-    </div>
+    </>
   );
 }
