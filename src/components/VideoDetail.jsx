@@ -3,7 +3,15 @@ export function VideoDetail({ video }) {
 
   const formatDate = function (str) {
     const date = new Date(str);
-    return str;
+    const locale = navigator.language;
+
+    const option = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    };
+
+    return new Intl.DateTimeFormat(locale, option).format(date);
   };
 
   return (
@@ -21,7 +29,7 @@ export function VideoDetail({ video }) {
       <div className="mt-3 pb-2">
         <h4 className="text-white font-bold text-xl">{video.snippet.title}</h4>
         <p className="text-white font-bold text-sm mt-2 w-3/4">
-          {formatDate(video.snippet.publishedAt)}
+          {`${formatDate(video.snippet.publishedAt)} `}
           <span className="text-gray-100 font-normal">
             {video.snippet.description}
           </span>
