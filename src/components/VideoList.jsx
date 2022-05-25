@@ -1,11 +1,11 @@
 import { VideoItem } from './VideoItem';
 
-export function VideoList({ videos, onVideoSelected }) {
+export function VideoList({ videos }) {
   return (
     <ul className="flex flex-col gap-4">
       {videos.map(video => (
         <li key={video.id.videoId}>
-          <VideoItem onVideoSelected={onVideoSelected} video={video} />
+          <VideoItem video={video} />
         </li>
       ))}
     </ul>

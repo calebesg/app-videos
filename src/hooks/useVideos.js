@@ -5,7 +5,7 @@ export function useVideos(defaultSearchTerm) {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    searchVideos(defaultSearchTerm);
+    defaultSearchTerm && searchVideos(defaultSearchTerm);
   }, [defaultSearchTerm]);
 
   const searchVideos = async function (term) {
