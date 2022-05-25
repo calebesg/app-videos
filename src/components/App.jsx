@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useVideos } from '../hooks/useVideos';
 
@@ -9,6 +9,8 @@ import { VideoList } from './VideoList';
 export function App() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [videos, searchVideos] = useVideos('games');
+
+  useEffect(() => setSelectedVideo(null), [videos]);
 
   return (
     <>
