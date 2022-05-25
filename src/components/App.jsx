@@ -1,20 +1,14 @@
 import { useState } from 'react';
 
-import { youtube } from '../api/youtube';
+import { useVideos } from '../hooks/useVideos';
+
 import { SearchBar } from './SearchBar';
 import { VideoDetail } from './VideoDetail';
 import { VideoList } from './VideoList';
 
 export function App() {
-  const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
-  const searchVideos = async function (term) {
-    const { data } = await youtube.get('/search', { params: { q: term } });
-
-    setVideos(data.items);
-    setSelectedVideo(null);
-  };
+  const [videos, searchVideos] = useVideos('games');
 
   return (
     <>

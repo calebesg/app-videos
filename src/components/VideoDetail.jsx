@@ -1,12 +1,8 @@
 export function VideoDetail({ video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
 
-  console.log(video);
-
   const formatDate = function (str) {
     const date = new Date(str);
-    console.log(date);
-
     return str;
   };
 
