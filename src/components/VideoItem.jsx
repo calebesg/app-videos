@@ -1,4 +1,15 @@
-export function VideoItem({ video, onVideoSelected }) {
+const size = {
+  auto: 'w-full',
+  large: 'w-48',
+  small: 'w-40',
+};
+
+const direction = {
+  column: 'flex-col',
+  inline: '',
+};
+
+export function VideoItem({ video, onVideoSelected, option }) {
   const formatTitle = function (text) {
     if (text.length <= 60) return text;
 
@@ -7,11 +18,13 @@ export function VideoItem({ video, onVideoSelected }) {
 
   return (
     <div
-      className="flex items-start gap-2 cursor-pointer hover:opacity-70 transition-all"
+      className={`flex ${
+        direction[option?.direction]
+      } items-start gap-4 cursor-pointer`}
       onClick={() => onVideoSelected(video)}
     >
       <img
-        className="w-40"
+        className={size[option.size]}
         src={video.snippet.thumbnails.medium.url}
         alt={video.snippet.title}
       />
