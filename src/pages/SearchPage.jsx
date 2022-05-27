@@ -19,7 +19,16 @@ export function SearchPage() {
       <NavBar />
 
       <main>
-        <VideoList size="small" videos={videos} />
+        <VideoList
+          options={{
+            display: null,
+            styleItems: {
+              size: 'large',
+              direction: 'row',
+            },
+          }}
+          videos={videos}
+        />
       </main>
     </>
   );
