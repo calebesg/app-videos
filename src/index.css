@@ -8,3 +8,7 @@ body {
   font-family: 'Roboto', 'sans-serif';
   @apply bg-gray-800;
 }
+
+main {
+  @apply pt-20 px-6 max-w-screen-2xl w-full mx-auto;
+}

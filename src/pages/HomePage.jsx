@@ -3,14 +3,23 @@ import { VideoList } from '../components/VideoList';
 import { useVideos } from '../hooks/useVideos';
 
 export function Home() {
-  const [videos] = useVideos();
+  const [videos] = useVideos('ultimos lançamentos de jogos');
 
   return (
     <>
       <NavBar />
 
-      <main className="pt-16">
-        <VideoList grid={true} size="large" videos={videos} />
+      <main>
+        <VideoList
+          options={{
+            display: 'grid',
+            styleItems: {
+              size: 'auto',
+              direction: 'column',
+            },
+          }}
+          videos={videos}
+        />
       </main>
     </>
   );

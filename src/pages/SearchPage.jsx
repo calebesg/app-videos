@@ -11,15 +11,14 @@ export function SearchPage() {
   const query = searchParams.get('search');
 
   useEffect(() => {
-    // searchVideos(query);
-    query && console.log(query);
-  }, [query]);
+    query && searchVideos(query);
+  }, [query, searchVideos]);
 
   return (
     <>
       <NavBar />
 
-      <main className="pt-16">
+      <main>
         <VideoList size="small" videos={videos} />
       </main>
     </>
