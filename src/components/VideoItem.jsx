@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 const size = {
   auto: 'w-full',
   large: 'w-96',
@@ -10,14 +12,17 @@ const direction = {
 };
 
 export function VideoItem({ video, option }) {
-  const formatTitle = function (text) {
-    if (text.length <= 60) return text;
+  const navigation = useNavigate();
 
-    return `${text.slice(0, 60)}...`;
+  const formatTitle = function (text) {
+    if (text.length <= 50) return text;
+
+    return `${text.slice(0, 50)}...`;
   };
 
   const handleClick = function () {
     console.log(video);
+    navigation(`/watch?id=${video.id.videoId}`);
   };
 
   return (
