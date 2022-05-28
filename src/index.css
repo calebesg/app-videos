@@ -4,9 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply overflow-y-scroll;
+}
+
 body {
   font-family: 'Roboto', 'sans-serif';
-  @apply bg-gray-800;
+  @apply bg-gray-800 scrollbar-thin scrollbar-thumb-rounded-lg scrollbar-thumb-gray-100 scrollbar-track-gray-800;
 }
 
 main {
