@@ -11,14 +11,11 @@ export function Home() {
 
       <main>
         <VideoList
-          options={{
-            display: 'grid',
-            styleItems: {
-              size: 'auto',
-              direction: 'column',
-            },
+          display="grid"
+          items={{
+            videos,
+            style: 'default',
           }}
-          videos={videos}
         />
       </main>
     </>

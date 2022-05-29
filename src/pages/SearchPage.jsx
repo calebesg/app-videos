@@ -20,14 +20,11 @@ export function SearchPage() {
 
       <main>
         <VideoList
-          options={{
-            display: null,
-            styleItems: {
-              size: 'large',
-              direction: 'row',
-            },
+          display="column"
+          items={{
+            videos,
+            style: 'rowLarge',
           }}
-          videos={videos}
         />
       </main>
     </>

@@ -17,14 +17,11 @@ export function WatchPage() {
         </div>
 
         <VideoList
-          options={{
-            display: 'inline',
-            styleItems: {
-              size: 'small',
-              direction: 'row',
-            },
+          display="column"
+          items={{
+            videos,
+            style: 'rowSmall',
           }}
-          videos={videos}
         />
       </main>
     </>
