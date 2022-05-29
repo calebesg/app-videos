@@ -8,10 +8,14 @@ export function VideoItem({ video, style }) {
 
   const selectedStyle = style ? styles[style] : style.default;
 
-  const title =
-    selectedStyle.titleSize !== styles.rowLarge.titleSize
-      ? characterLimit(video.snippet.title)
-      : video.snippet.title;
+  let title = video.snippet.title;
+
+  if (
+    selectedStyle.titleSize !== styles.rowLarge.titleSize ||
+    window.screen.availWidth <= 768
+  ) {
+    title = characterLimit(title, 40);
+  }
 
   const handleClick = function () {
     navigation(`/watch?id=${video.id.videoId}`);
@@ -31,7 +35,7 @@ export function VideoItem({ video, style }) {
         </span>
 
         {selectedStyle.type === 'extend' && (
-          <p className="text-gray-100 text-xs mt-4">
+          <p className="text-gray-100 text-xs mt-4 opacity-0 h-0 overflow-hidden md:opacity-100 md:overflow-visible">
             {video.snippet.description}
           </p>
         )}
