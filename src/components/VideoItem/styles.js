@@ -8,15 +8,15 @@ export const styles = {
 
   rowSmall: {
     type: 'compact',
-    card: 'flex items-start gap-4 cursor-pointer',
-    thumbnail: 'w-40',
+    card: 'flex flex-col lg:flex-row items-start gap-4 cursor-pointer',
+    thumbnail: 'w-full lg:w-40',
     titleSize: 'text-sm',
   },
 
   rowLarge: {
     type: 'extend',
-    card: 'flex items-start gap-4 cursor-pointer max-w-screen overflow-hidden',
-    thumbnail: 'w-40 md:w-96',
-    titleSize: 'text-sm md:text-lg',
+    card: 'flex flex-col lg:flex-row items-start gap-4 cursor-pointer',
+    thumbnail: 'w-full lg:w-96 min-w-96',
+    titleSize: 'text-sm lg:text-lg',
   },
 };

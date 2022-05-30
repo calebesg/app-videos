@@ -11,18 +11,20 @@ export function WatchPage() {
     <>
       <NavBar />
 
-      <main className="grid lg:grid-cols-3 gap-6 grid-cols-1">
-        <div className="col-span-2">
+      <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
+        <div className="lg:col-span-2">
           {videos.length > 0 && <VideoDetail video={videos[0]} />}
         </div>
 
-        <VideoList
-          display="column"
-          items={{
-            videos,
-            style: 'rowSmall',
-          }}
-        />
+        <div className="px-4 sm:px-0">
+          <VideoList
+            display="column"
+            items={{
+              videos,
+              style: 'rowSmall',
+            }}
+          />
+        </div>
       </main>
     </>
   );
