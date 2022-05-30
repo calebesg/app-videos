@@ -6,15 +6,12 @@ import { styles } from './styles';
 export function VideoItem({ video, style }) {
   const navigation = useNavigate();
 
-  const selectedStyle = style ? styles[style] : style.default;
+  const selectedStyle = styles[style];
 
   let title = video.snippet.title;
 
-  if (
-    selectedStyle.titleSize !== styles.rowLarge.titleSize ||
-    window.screen.availWidth <= 768
-  ) {
-    title = characterLimit(title, 40);
+  if (style === 'rowSmall') {
+    title = characterLimit(title);
   }
 
   const handleClick = function () {
@@ -35,7 +32,7 @@ export function VideoItem({ video, style }) {
         </span>
 
         {selectedStyle.type === 'extend' && (
-          <p className="text-gray-100 text-xs mt-4 opacity-0 h-0 overflow-hidden md:opacity-100 md:overflow-visible">
+          <p className="text-gray-100 text-xs mt-4 hidden lg:flex">
             {video.snippet.description}
           </p>
         )}

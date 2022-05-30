@@ -1,8 +1,9 @@
 import { VideoItem } from './VideoItem';
 
 const styles = {
-  grid: 'grid gap-x-4 gap-y-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
-  column: 'flex flex-col gap-4',
+  grid: 'grid gap-x-4 gap-y-4 sm:gap-y-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+  column:
+    'grid gap-x-4  gap-y-4 sm:gap-y-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:flex lg:flex-col lg:gap-4',
 };
 
 export function VideoList({ display, items }) {
