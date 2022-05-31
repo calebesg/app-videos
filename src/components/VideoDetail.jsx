@@ -1,4 +1,6 @@
-export function VideoDetail({ video }) {
+import { connect } from 'react-redux';
+
+const VideoDetail = function ({ videoId, video }) {
   const url = `https://www.youtube.com/embed/${video.id.videoId}`;
 
   const formatDate = function (str) {
@@ -39,4 +41,12 @@ export function VideoDetail({ video }) {
       </div>
     </>
   );
-}
+};
+
+const mapStateToProps = function (state, ownProps) {
+  return {
+    video: state.videos.find(video => video.id.videoId === ownProps.videoId),
+  };
+};
+
+export default connect(mapStateToProps)(VideoDetail);

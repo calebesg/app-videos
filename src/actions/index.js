@@ -6,7 +6,7 @@ export const fetchMostPopularVideos = () => async dispatch => {
   });
   dispatch({
     type: 'FETCH_VIDEOS',
-    payload: response.data,
+    payload: response.data.items,
   });
 };
 
@@ -16,7 +16,7 @@ export const fetchVideosByTerm = term => async dispatch => {
   });
   dispatch({
     type: 'FETCH_VIDEOS',
-    payload: response.data,
+    payload: response.data.items,
   });
 };
 
@@ -26,6 +26,6 @@ export const fetchRelatedVideos = id => async dispatch => {
   });
   dispatch({
     type: 'FETCH_VIDEOS',
-    payload: response.data,
+    payload: response.data.items,
   });
 };

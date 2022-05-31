@@ -15,7 +15,7 @@ export function VideoItem({ video, style }) {
   }
 
   const handleClick = function () {
-    navigation(`/watch?id=${video.id.videoId}`);
+    navigation(`/watch?v=${video.id.videoId}`);
   };
 
   return (

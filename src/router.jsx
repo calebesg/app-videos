@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Home } from './pages/HomePage';
-import { SearchPage } from './pages/SearchPage';
-import { WatchPage } from './pages/WatchPage';
+import Home from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
+import WatchPage from './pages/WatchPage';
 
 export function Router() {
   return (
