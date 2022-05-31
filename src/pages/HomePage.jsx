@@ -1,23 +1,21 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { NavBar } from '../components/NavBar';
-import { VideoList } from '../components/VideoList';
-import { useVideos } from '../hooks/useVideos';
+import VideoList from '../components/VideoList';
+import { fetchMostPopularVideos } from '../actions';
 
-export function Home() {
-  const [videos] = useVideos('ultimos lançamentos de jogos');
+const Home = function ({ fetchMostPopularVideos: getVideos }) {
+  useEffect(() => getVideos, []);
 
   return (
     <>
       <NavBar />
 
       <main>
-        <VideoList
-          display="grid"
-          items={{
-            videos,
-            style: 'default',
-          }}
-        />
+        <VideoList display="grid" items={{ style: 'default' }} />
       </main>
     </>
   );
-}
+};
+
+export default connect(null, { fetchMostPopularVideos })(Home);
