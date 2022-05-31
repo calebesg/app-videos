@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { youtube } from '../api/youtube';
 import { youtube } from '../api/mock-api';
 
@@ -26,5 +26,10 @@ export const useVideos = function () {
     setVideos(data.items);
   };
 
-  return [videos, searchVideos, searchVideosById, searchMostPopularVideos];
+  return {
+    videos,
+    searchVideos,
+    searchVideosById,
+    searchMostPopularVideos,
+  };
 };
