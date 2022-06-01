@@ -1,20 +1,10 @@
 import { connect } from 'react-redux';
+import formatDate from '../utils/formatDate';
 
-const VideoDetail = function ({ videoId, video }) {
-  const url = `https://www.youtube.com/embed/${video.id.videoId}`;
+const VideoDetail = function ({ video }) {
+  if (!video?.id) return null;
 
-  const formatDate = function (str) {
-    const date = new Date(str);
-    const locale = navigator.language;
-
-    const option = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    };
-
-    return new Intl.DateTimeFormat(locale, option).format(date);
-  };
+  const url = `https://www.youtube.com/embed/${video.id}`;
 
   return (
     <>
@@ -43,9 +33,9 @@ const VideoDetail = function ({ videoId, video }) {
   );
 };
 
-const mapStateToProps = function (state, ownProps) {
+const mapStateToProps = function (state) {
   return {
-    video: state.videos.find(video => video.id.videoId === ownProps.videoId),
+    video: state.targetVideo,
   };
 };
 

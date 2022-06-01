@@ -1,31 +1,16 @@
-import { youtube } from '../api/mock-api';
+import fetchRelatedVideos from './fetchRelatedVideos';
+import fetchVideoById from './fetchVideoById';
+import fetchMostPopularVideos from './fetchMostPopularVideos';
+import fetchVideosByTerm from './fetchVideosByTerm';
 
-export const fetchMostPopularVideos = () => async dispatch => {
-  const response = await youtube.get('/videos', {
-    params: { chart: 'mostPopular' },
-  });
-  dispatch({
-    type: 'FETCH_VIDEOS',
-    payload: response.data.items,
-  });
+export {
+  fetchRelatedVideos,
+  fetchVideoById,
+  fetchMostPopularVideos,
+  fetchVideosByTerm,
 };
 
-export const fetchVideosByTerm = term => async dispatch => {
-  const response = await youtube.get('/search', {
-    params: { q: term },
-  });
-  dispatch({
-    type: 'FETCH_VIDEOS',
-    payload: response.data.items,
-  });
-};
-
-export const fetchRelatedVideos = id => async dispatch => {
-  const response = await youtube.get('/search', {
-    params: { relatedToVideoId: id },
-  });
-  dispatch({
-    type: 'FETCH_VIDEOS',
-    payload: response.data.items,
-  });
+export const fetchTargetAndRelatedVideos = id => async dispatch => {
+  await dispatch(fetchVideoById(id));
+  dispatch(fetchRelatedVideos(id));
 };

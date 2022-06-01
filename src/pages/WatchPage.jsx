@@ -5,14 +5,14 @@ import { useSearchParams } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
 import VideoList from '../components/VideoList';
 import VideoDetail from '../components/VideoDetail';
-import { fetchRelatedVideos } from '../actions';
+import { fetchTargetAndRelatedVideos } from '../actions';
 
-const WatchPage = function ({ fetchRelatedVideos }) {
+const WatchPage = function ({ fetchTargetAndRelatedVideos }) {
   const [params] = useSearchParams();
   const id = params.get('v');
 
   useEffect(() => {
-    fetchRelatedVideos(id);
+    fetchTargetAndRelatedVideos(id);
   }, [id]);
 
   return (
@@ -21,7 +21,7 @@ const WatchPage = function ({ fetchRelatedVideos }) {
 
       <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <VideoDetail videoId={id} />
+          <VideoDetail />
         </div>
 
         <div className="px-4 sm:px-0">
@@ -32,4 +32,4 @@ const WatchPage = function ({ fetchRelatedVideos }) {
   );
 };
 
-export default connect(null, { fetchRelatedVideos })(WatchPage);
+export default connect(null, { fetchTargetAndRelatedVideos })(WatchPage);
