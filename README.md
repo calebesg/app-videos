@@ -24,7 +24,9 @@
 This app features all the latest tools and practices in web development!
 
 - ⚛️ **Reactjs** — A JavaScript library for building user interfaces
-- 🎨 **Materialize** — Framework that helps create beautiful, responsive layouts using human-friendly HTML
+- **Redux** — Redux helps you write applications that behave consistently
+- **Redux Thunk** — To play with Async API calls we use Redux Thunk middleware in React
+- 🎨 **Tailwind** — Framework that helps create beautiful, responsive layouts using human-friendly HTML
 - **Javascrip** — A program language
 
 ## 🏃💨 Getting started
