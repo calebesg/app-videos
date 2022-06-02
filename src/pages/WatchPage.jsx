@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { NavBar } from '../components/NavBar';
 import VideoList from '../components/VideoList';
@@ -8,12 +8,17 @@ import VideoDetail from '../components/VideoDetail';
 import { fetchTargetAndRelatedVideos } from '../actions';
 
 const WatchPage = function ({ fetchTargetAndRelatedVideos }) {
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const id = params.get('v');
 
-  useEffect(() => {
+  const getVideo = useCallback(() => {
     fetchTargetAndRelatedVideos(id);
-  }, [id]);
+  }, [fetchTargetAndRelatedVideos, id]);
+
+  useEffect(() => {
+    id ? getVideo() : navigate('/');
+  }, [getVideo, navigate, id]);
 
   return (
     <>

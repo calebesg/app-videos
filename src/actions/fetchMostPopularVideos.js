@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import { youtube } from '../api/mock-api';
 
-export default () => async dispatch => {
+const fetchMostPopularVideos = () => async dispatch => {
   const response = await youtube.get('/videos', {
     params: { chart: 'mostPopular' },
   });
@@ -10,3 +9,5 @@ export default () => async dispatch => {
     payload: response.data.items,
   });
 };
+
+export default fetchMostPopularVideos;

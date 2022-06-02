@@ -1,24 +1,31 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
 import VideoList from '../components/VideoList';
 import { fetchVideosByTerm } from '../actions';
+import { ResultNotFound } from '../components/ResultNotFound';
 
 const SearchPage = function ({ fetchVideosByTerm }) {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('search');
+  const [params] = useSearchParams();
+  const query = params.get('search');
 
-  useEffect(() => {
+  const getVideos = useCallback(() => {
     query && fetchVideosByTerm(query);
-  }, [query]);
+  }, [query, fetchVideosByTerm]);
+
+  useEffect(() => getVideos, [getVideos]);
 
   return (
     <>
       <NavBar />
 
       <main>
-        <VideoList display="column" items={{ style: 'rowLarge' }} />
+        {query ? (
+          <VideoList display="column" items={{ style: 'rowLarge' }} />
+        ) : (
+          <ResultNotFound />
+        )}
       </main>
     </>
   );
