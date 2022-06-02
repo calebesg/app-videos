@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { NavBar } from '../components/NavBar';
 import VideoList from '../components/VideoList';
 import { fetchMostPopularVideos } from '../actions';
 
-const Home = function ({ fetchMostPopularVideos: getVideos }) {
-  useEffect(() => getVideos, []);
+const Home = function ({ fetchMostPopularVideos }) {
+  const getVideos = useCallback(() => {
+    fetchMostPopularVideos();
+  }, [fetchMostPopularVideos]);
+
+  useEffect(() => getVideos, [getVideos]);
 
   return (
     <>

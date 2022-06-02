@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { youtube } from '../api/mock-api';
 
-export default id => dispatch => {
+const fetchVideoById = id => dispatch => {
   _fetchVideoById(id, dispatch);
 };
 
@@ -14,3 +14,5 @@ const _fetchVideoById = _.memoize(async (id, dispatch) => {
     payload: response.data.items[0],
   });
 });
+
+export default fetchVideoById;
