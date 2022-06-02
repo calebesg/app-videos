@@ -4,7 +4,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { NavBar } from '../components/NavBar';
 import VideoList from '../components/VideoList';
-import VideoDetail from '../components/VideoDetail';
+import VideoShow from '../components/VideoShow';
 import { fetchTargetAndRelatedVideos } from '../actions';
 
 const WatchPage = function ({ fetchTargetAndRelatedVideos }) {
@@ -26,7 +26,7 @@ const WatchPage = function ({ fetchTargetAndRelatedVideos }) {
 
       <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <VideoDetail />
+          <VideoShow />
         </div>
 
         <div className="px-4 sm:px-0">
