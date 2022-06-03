@@ -1,16 +1,15 @@
-import fetchRelatedVideos from './fetchRelatedVideos';
-import fetchVideoById from './fetchVideoById';
-import fetchMostPopularVideos from './fetchMostPopularVideos';
-import fetchVideosByTerm from './fetchVideosByTerm';
-
-export {
+import {
+  fetchTargetAndRelatedVideos,
   fetchRelatedVideos,
   fetchVideoById,
   fetchMostPopularVideos,
   fetchVideosByTerm,
-};
+} from './videosActions';
 
-export const fetchTargetAndRelatedVideos = id => async dispatch => {
-  await dispatch(fetchVideoById(id));
-  dispatch(fetchRelatedVideos(id));
+export {
+  fetchTargetAndRelatedVideos,
+  fetchRelatedVideos,
+  fetchVideoById,
+  fetchMostPopularVideos,
+  fetchVideosByTerm,
 };
