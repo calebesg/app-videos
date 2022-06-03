@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { characterLimit } from '../utils/characterLimit';
+import textFormat from '../utils/textFormat';
 
 const VideoDescription = function ({ description }) {
   const [active, setActive] = useState(false);
@@ -16,10 +17,14 @@ const VideoDescription = function ({ description }) {
           className={active ? 'absolute -bottom-8 left-0' : ''}
           onClick={() => setActive(!active)}
         >
-          {active ? 'menos...' : ' mais...'}
+          {active ? 'Mostrar menos' : ' ...mais'}
         </button>
       </span>
-      {active && <p className="text-white font-thin">{description}</p>}
+      {active && (
+        <div className="text-white font-thin flex flex-col gap-4">
+          {textFormat(description)}
+        </div>
+      )}
     </>
   );
 };

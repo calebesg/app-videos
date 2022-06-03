@@ -43,7 +43,6 @@ const VideoShow = function ({ video }) {
 };
 
 const mapStateToProps = function (state) {
-  console.log(state.targetVideo);
   return {
     video: state.targetVideo,
   };
