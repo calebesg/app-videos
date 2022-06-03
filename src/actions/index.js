@@ -4,6 +4,7 @@ import {
   fetchVideoById,
   fetchMostPopularVideos,
   fetchVideosByTerm,
+  clearVideos,
 } from './videosActions';
 
 export {
@@ -12,4 +13,5 @@ export {
   fetchVideoById,
   fetchMostPopularVideos,
   fetchVideosByTerm,
+  clearVideos,
 };
