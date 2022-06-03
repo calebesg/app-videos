@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { youtube } from '../api/mock-api';
+import { youtube } from '../apis/mock-api';
 
 export const fetchTargetAndRelatedVideos = id => async dispatch => {
   await dispatch(fetchVideoById(id));

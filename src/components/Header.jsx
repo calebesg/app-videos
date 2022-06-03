@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { SearchForm } from './SearchForm';
 import logo from '../assets/logo.svg';
 
-export function NavBar({ children }) {
+const Header = function ({ children }) {
   return (
     <header className="w-full py-2 px-4 fixed z-40 bg-gray-700 backdrop-blur-sm">
       <nav className="w-full flex justify-center items-center relative">
@@ -16,4 +16,6 @@ export function NavBar({ children }) {
       {children}
     </header>
   );
-}
+};
+
+export default Header;
