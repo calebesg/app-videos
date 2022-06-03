@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import formatDate from '../utils/formatDate';
+import VideoDescription from './VideoDescription';
 
-const VideoDetail = function ({ video }) {
+const VideoShow = function ({ video }) {
   if (!video?.id) return null;
 
   const url = `https://www.youtube.com/embed/${video.id}`;
@@ -19,15 +20,23 @@ const VideoDetail = function ({ video }) {
       </div>
 
       <div className="mt-3 pb-2 px-4 sm:px-0">
+        <div className="flex gap-1">
+          {video.snippet?.tags[1].split(' ').map((tag, index) => (
+            <span key={index} className="text-blue-400 text-xs">
+              #{`${tag[0].toUpperCase()}${tag.slice(1)}`}
+            </span>
+          ))}
+        </div>
+
         <h4 className="text-white font-bold text-sm md:text-xl">
           {video.snippet.title}
         </h4>
-        <p className="font-bold text-xs text-gray-100 md:text-white md:text-sm mt-2 w-3/4">
+
+        <div className="font-bold text-xs text-gray-100 md:text-white md:text-sm mt-2 w-3/4 relative">
           {`${formatDate(video.snippet.publishedAt)} `}
-          <span className="text-gray-100 font-normal hidden md:inline">
-            {video.snippet.description}
-          </span>
-        </p>
+
+          <VideoDescription description={video.snippet.description} />
+        </div>
       </div>
     </>
   );
@@ -39,4 +48,4 @@ const mapStateToProps = function (state) {
   };
 };
 
-export default connect(mapStateToProps)(VideoDetail);
+export default connect(mapStateToProps)(VideoShow);
