@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SearchForm } from './SearchForm';
+import SearchForm from './SearchForm';
 import logo from '../assets/logo.svg';
 
 const Header = function ({ children }) {

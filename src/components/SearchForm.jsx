@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function SearchForm() {
+const SearchForm = function () {
   const [term, setTerm] = useState('');
   const navigation = useNavigate();
 
-  const handleSubmit = function (event) {
-    event.preventDefault();
+  const handleSubmit = function (e) {
+    e.preventDefault();
+
+    if (!term) return null;
+
     navigation(`/results?search=${term}`);
   };
 
@@ -22,7 +25,6 @@ export function SearchForm() {
         type="search"
         aria-label="Search a video"
         placeholder="Pesquisar"
-        required
       />
       <button
         className="h-full w-16 flex items-center justify-center border-none bg-transparent text-white"
@@ -33,4 +35,6 @@ export function SearchForm() {
       </button>
     </form>
   );
-}
+};
+
+export default SearchForm;

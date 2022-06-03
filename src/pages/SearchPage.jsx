@@ -1,29 +1,32 @@
-import { useCallback, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 import VideoList from '../components/VideoList';
 import { fetchVideosByTerm } from '../actions';
 import { ResultNotFound } from '../components/ResultNotFound';
 
-const SearchPage = function ({ fetchVideosByTerm }) {
-  const [params] = useSearchParams();
-  const query = params.get('search');
+class SearchPage extends React.Component {
+  state = { query: '' };
 
-  const getVideos = useCallback(() => {
-    query && fetchVideosByTerm(query);
-  }, [query, fetchVideosByTerm]);
+  componentDidMount() {
+    const term = window.location.search.split('=')[1];
 
-  useEffect(() => getVideos, [getVideos]);
+    if (term) {
+      this.props.fetchVideosByTerm(term);
+      this.setState({ query: term });
+    }
+  }
 
-  return (
-    <main>
-      {query ? (
-        <VideoList display="column" items={{ style: 'rowLarge' }} />
-      ) : (
-        <ResultNotFound />
-      )}
-    </main>
-  );
-};
+  render() {
+    return (
+      <main>
+        {this.state.query ? (
+          <VideoList display="column" items={{ style: 'rowLarge' }} />
+        ) : (
+          <ResultNotFound />
+        )}
+      </main>
+    );
+  }
+}
 
 export default connect(null, { fetchVideosByTerm })(SearchPage);
