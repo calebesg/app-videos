@@ -1,35 +1,38 @@
-import { useCallback, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import VideoList from '../components/VideoList';
 import VideoShow from '../components/VideoShow';
 import { fetchTargetAndRelatedVideos } from '../actions';
 
-const WatchPage = function ({ fetchTargetAndRelatedVideos }) {
-  const navigate = useNavigate();
-  const [params] = useSearchParams();
-  const id = params.get('v');
+class WatchPage extends React.Component {
+  state = { redirect: false, videoId: null };
 
-  const getVideo = useCallback(() => {
-    fetchTargetAndRelatedVideos(id);
-  }, [fetchTargetAndRelatedVideos, id]);
+  componentDidMount() {
+    const search = window.location.search;
+    const id = new URLSearchParams(search).get('v');
 
-  useEffect(() => {
-    id ? getVideo() : navigate('/');
-  }, [getVideo, navigate, id]);
+    if (!id) return this.setState({ redirect: true });
 
-  return (
-    <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
-      <div className="lg:col-span-2">
-        <VideoShow />
-      </div>
+    this.props.fetchTargetAndRelatedVideos(id);
+  }
 
-      <div className="px-4 sm:px-0">
-        <VideoList display="column" items={{ style: 'rowSmall' }} />
-      </div>
-    </main>
-  );
-};
+  render() {
+    if (this.state.redirect) return <Navigate to="/" replace={true} />;
+
+    return (
+      <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <VideoShow />
+        </div>
+
+        <div className="px-4 sm:px-0">
+          <VideoList display="column" items={{ style: 'rowSmall' }} />
+        </div>
+      </main>
+    );
+  }
+}
 
 export default connect(null, { fetchTargetAndRelatedVideos })(WatchPage);
