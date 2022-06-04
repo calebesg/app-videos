@@ -5,27 +5,30 @@ import { fetchVideosByTerm } from '../actions';
 import { ResultNotFound } from '../components/ResultNotFound';
 
 class SearchPage extends React.Component {
-  state = { query: '' };
+  state = { result: null };
 
   componentDidMount() {
-    const term = window.location.search.split('=')[1];
+    const search = window.location.search;
+    const term = new URLSearchParams(search).get('search');
 
-    if (term) {
-      this.props.fetchVideosByTerm(term);
-      this.setState({ query: term });
-    }
+    if (!term) return this.setState({ result: false });
+
+    this.setState({ result: true });
+    this.props.fetchVideosByTerm(term);
+  }
+
+  renderListOrNot() {
+    return this.state.result ? (
+      <VideoList display="column" items={{ style: 'rowLarge' }} />
+    ) : (
+      <ResultNotFound />
+    );
   }
 
   render() {
-    return (
-      <main>
-        {this.state.query ? (
-          <VideoList display="column" items={{ style: 'rowLarge' }} />
-        ) : (
-          <ResultNotFound />
-        )}
-      </main>
-    );
+    if (this.state.result === null) return null;
+
+    return <main>{this.renderListOrNot()}</main>;
   }
 }
 
