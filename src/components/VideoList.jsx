@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { VideoItem } from './VideoItem';
+import VideoItem from './VideoItem';
 
 const styles = {
   grid: 'grid gap-x-4 gap-y-4 sm:gap-y-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
@@ -21,7 +21,7 @@ const VideoList = function ({ display, items, videos }) {
 
 const mapStateToProps = state => {
   return {
-    videos: state.videos,
+    videos: state.videos.videos,
   };
 };
 

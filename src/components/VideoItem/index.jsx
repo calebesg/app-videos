@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { selectVideo } from '../../actions';
 import { characterLimit } from '../../utils/characterLimit';
 
 import { styles } from './styles';
 
-export function VideoItem({ video, style }) {
+const VideoItem = function ({ video, style, selectVideo }) {
   const navigation = useNavigate();
 
   const selectedStyle = styles[style];
@@ -16,6 +18,7 @@ export function VideoItem({ video, style }) {
 
   const handleClick = function () {
     navigation(`/watch?v=${video.id.videoId}`);
+    selectVideo(video.id.videoId);
   };
 
   return (
@@ -39,4 +42,6 @@ export function VideoItem({ video, style }) {
       </div>
     </li>
   );
-}
+};
+
+export default connect(null, { selectVideo })(VideoItem);

@@ -1,9 +1,15 @@
+import {
+  CLEAR_VIDEOS,
+  FETCH_VIDEO,
+  FETCH_VIDEOS,
+  SELECT_VIDEO,
+} from '../actions/types';
 import { youtube } from '../apis/mock-api';
 
 export const fetchTargetAndRelatedVideos = id => async dispatch => {
   dispatch(clearVideos());
   await dispatch(fetchVideoById(id));
-  dispatch(fetchRelatedVideos(id));
+  await dispatch(fetchRelatedVideos(id));
 };
 
 export const fetchVideosByTerm = term => async dispatch => {
@@ -14,18 +20,25 @@ export const fetchVideosByTerm = term => async dispatch => {
   });
 
   dispatch({
-    type: 'FETCH_VIDEOS',
+    type: FETCH_VIDEOS,
     payload: response.data.items,
   });
 };
 
 export const fetchVideoById = id => async dispatch => {
   const response = await youtube.get('/videos', {
-    params: { id },
+    params: { id: id },
   });
   dispatch({
-    type: 'FETCH_VIDEO',
+    type: FETCH_VIDEO,
     payload: response.data.items[0],
+  });
+};
+
+export const selectVideo = id => dispatch => {
+  dispatch({
+    type: SELECT_VIDEO,
+    payload: id,
   });
 };
 
@@ -37,7 +50,7 @@ export const fetchRelatedVideos = id => async dispatch => {
   });
 
   dispatch({
-    type: 'FETCH_VIDEOS',
+    type: FETCH_VIDEOS,
     payload: response.data.items,
   });
 };
@@ -49,13 +62,13 @@ export const fetchMostPopularVideos = () => async dispatch => {
     params: { chart: 'mostPopular' },
   });
   dispatch({
-    type: 'FETCH_VIDEOS',
+    type: FETCH_VIDEOS,
     payload: response.data.items,
   });
 };
 
 export const clearVideos = () => dispatch => {
   dispatch({
-    type: 'CLEAR_VIDEOS',
+    type: CLEAR_VIDEOS,
   });
 };

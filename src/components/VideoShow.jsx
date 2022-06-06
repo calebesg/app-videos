@@ -1,51 +1,62 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { fetchTargetAndRelatedVideos } from '../actions';
 import formatDate from '../utils/formatDate';
 import VideoDescription from './VideoDescription';
 
-const VideoShow = function ({ video }) {
-  if (!video?.id) return null;
+class VideoShow extends React.Component {
+  componentDidMount() {
+    this.props.fetchTargetAndRelatedVideos(this.props.targetId);
+  }
 
-  const url = `https://www.youtube.com/embed/${video.id}`;
+  render() {
+    const { selectedVideo } = this.props;
 
-  return (
-    <>
-      <div className="aspect-w-16 aspect-h-9">
-        <iframe
-          src={url}
-          frameBorder="0"
-          title="youtube video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
+    if (selectedVideo === null) return <h1>LOADING</h1>;
 
-      <div className="mt-3 pb-2 px-4 sm:px-0">
-        <div className="flex gap-1">
-          {video.snippet?.tags[1].split(' ').map((tag, index) => (
-            <span key={index} className="text-blue-400 text-xs">
-              #{`${tag[0].toUpperCase()}${tag.slice(1)}`}
-            </span>
-          ))}
+    return (
+      <>
+        <div className="aspect-w-16 aspect-h-9">
+          <iframe
+            src={`https://www.youtube.com/embed/${selectedVideo.id}`}
+            frameBorder="0"
+            title="youtube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
 
-        <h4 className="text-white font-bold text-sm md:text-xl">
-          {video.snippet.title}
-        </h4>
+        <div className="mt-3 pb-2 px-4 sm:px-0">
+          {/* <div className="flex gap-1">
+            {selectedVideo.snippet?.tags[1].split(' ').map((tag, index) => (
+              <span key={index} className="text-blue-400 text-xs">
+                #{`${tag[0].toUpperCase()}${tag.slice(1)}`}
+              </span>
+            ))}
+          </div> */}
 
-        <div className="font-bold text-xs text-gray-100 md:text-white md:text-sm mt-2 w-3/4 relative">
-          {`${formatDate(video.snippet.publishedAt)} `}
+          <h4 className="text-white font-bold text-sm md:text-xl">
+            {selectedVideo.snippet.title}
+          </h4>
 
-          <VideoDescription description={video.snippet.description} />
+          <div className="font-bold text-xs text-gray-100 md:text-white md:text-sm mt-2 w-3/4 relative">
+            {`${formatDate(selectedVideo.snippet.publishedAt)} `}
+
+            <VideoDescription description={selectedVideo.snippet.description} />
+          </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
 
 const mapStateToProps = function (state) {
   return {
-    video: state.targetVideo,
+    targetId: state.videos.targetId,
+    selectedVideo: state.videos.selectedVideo,
   };
 };
 
-export default connect(mapStateToProps)(VideoShow);
+export default connect(mapStateToProps, { fetchTargetAndRelatedVideos })(
+  VideoShow
+);
