@@ -14,13 +14,11 @@ class VideoShow extends React.Component {
 
     if (selectedVideo === null) return <h1>LOADING</h1>;
 
-    console.log(selectedVideo);
-
     return (
       <>
         <div className="aspect-w-16 aspect-h-9">
           <iframe
-            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+            src={`https://www.youtube.com/embed/${selectedVideo.id}`}
             frameBorder="0"
             title="youtube video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

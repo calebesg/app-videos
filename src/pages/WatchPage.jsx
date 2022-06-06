@@ -7,15 +7,22 @@ import VideoShow from '../components/VideoShow';
 import { selectVideo } from '../actions';
 
 class WatchPage extends React.Component {
-  state = { redirect: null };
+  constructor(props) {
+    super(props);
+
+    this.state = { redirect: null };
+
+    const id = this.getUrlVideoId();
+    id && this.props.selectVideo(id);
+  }
+
+  getUrlVideoId() {
+    const search = window.location.search;
+    return new URLSearchParams(search).get('v');
+  }
 
   componentDidMount() {
-    const search = window.location.search;
-    const id = new URLSearchParams(search).get('v');
-
-    if (!id) return this.setState({ redirect: true });
-
-    this.props.selectVideo(id);
+    if (!this.getUrlVideoId()) this.setState({ redirect: true });
   }
 
   render() {

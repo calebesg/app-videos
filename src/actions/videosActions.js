@@ -9,7 +9,7 @@ import { youtube } from '../apis/mock-api';
 export const fetchTargetAndRelatedVideos = id => async dispatch => {
   dispatch(clearVideos());
   await dispatch(fetchVideoById(id));
-  dispatch(fetchRelatedVideos(id));
+  await dispatch(fetchRelatedVideos(id));
 };
 
 export const fetchVideosByTerm = term => async dispatch => {
@@ -27,7 +27,7 @@ export const fetchVideosByTerm = term => async dispatch => {
 
 export const fetchVideoById = id => async dispatch => {
   const response = await youtube.get('/videos', {
-    params: { id },
+    params: { id: id },
   });
   dispatch({
     type: FETCH_VIDEO,
