@@ -4,10 +4,10 @@ import { Navigate } from 'react-router-dom';
 
 import VideoList from '../components/VideoList';
 import VideoShow from '../components/VideoShow';
-import { fetchTargetAndRelatedVideos } from '../actions';
+import { selectVideo } from '../actions';
 
 class WatchPage extends React.Component {
-  state = { redirect: false, videoId: null };
+  state = { redirect: null };
 
   componentDidMount() {
     const search = window.location.search;
@@ -15,7 +15,7 @@ class WatchPage extends React.Component {
 
     if (!id) return this.setState({ redirect: true });
 
-    this.props.fetchTargetAndRelatedVideos(id);
+    this.props.selectVideo(id);
   }
 
   render() {
@@ -35,4 +35,4 @@ class WatchPage extends React.Component {
   }
 }
 
-export default connect(null, { fetchTargetAndRelatedVideos })(WatchPage);
+export default connect(null, { selectVideo })(WatchPage);
