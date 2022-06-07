@@ -5,8 +5,18 @@ import formatDate from '../utils/formatDate';
 import VideoDescription from './VideoDescription';
 
 class VideoShow extends React.Component {
+  state = { id: null };
+
   componentDidMount() {
     this.props.fetchTargetAndRelatedVideos(this.props.targetId);
+    this.setState({ id: this.props.targetId });
+  }
+
+  componentDidUpdate() {
+    if (this.props.targetId !== this.state.id) {
+      this.props.fetchTargetAndRelatedVideos(this.props.targetId);
+      this.setState({ id: this.props.targetId });
+    }
   }
 
   render() {
