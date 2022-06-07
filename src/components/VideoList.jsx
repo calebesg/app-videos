@@ -12,9 +12,10 @@ const VideoList = function ({ display, items, videos }) {
 
   return (
     <ul className={selectedStyle}>
-      {videos.map(video => (
-        <VideoItem key={video.id.videoId} style={items.style} video={video} />
-      ))}
+      {videos.length > 0 &&
+        videos.map(video => (
+          <VideoItem key={video.id.videoId} style={items.style} video={video} />
+        ))}
     </ul>
   );
 };

@@ -46,7 +46,7 @@ export const fetchRelatedVideos = id => async dispatch => {
   dispatch(clearVideos());
 
   const response = await youtube.get('/search', {
-    params: { relatedToVideoId: id, maxResults: 20 },
+    params: { relatedToVideoId: id, maxResults: 15 },
   });
 
   dispatch({
