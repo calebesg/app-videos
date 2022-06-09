@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import VideoList from '../components/VideoList';
 import VideoShow from '../components/VideoShow';
 import { selectVideo } from '../actions';
+import Container from '../components/Container';
 
 class WatchPage extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class WatchPage extends React.Component {
     if (this.state.redirect) return <Navigate to="/" replace={true} />;
 
     return (
-      <main className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
+      <Container className="pt-14 sm:pt-20 px-0 sm:px-6 grid gap-6 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <VideoShow />
         </div>
@@ -37,7 +38,7 @@ class WatchPage extends React.Component {
         <div className="px-4 sm:px-0">
           <VideoList display="column" items={{ style: 'rowSmall' }} />
         </div>
-      </main>
+      </Container>
     );
   }
 }

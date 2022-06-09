@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import VideoList from '../components/VideoList';
 import { fetchVideosByTerm } from '../actions';
+
+import Container from '../components/Container';
+import VideoList from '../components/VideoList';
 import { ResultNotFound } from '../components/ResultNotFound';
 
 class SearchPage extends React.Component {
@@ -28,7 +30,7 @@ class SearchPage extends React.Component {
   render() {
     if (this.state.result === null) return null;
 
-    return <main>{this.renderListOrNot()}</main>;
+    return <Container>{this.renderListOrNot()}</Container>;
   }
 }
 
